@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <ul id="list"></ul>
+        <input type="button" id="btnList" value="List" />
+    </div>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(function () {
+            $("#btnList").click(function () {
+                $("#list").empty();
+                $.ajax({
+                    type: "GET",
+                    url: "/api/course",
+                    success: function (data) {
+                        data.forEach(function (item) {
+                            $("#list").append($("<li>").text(item.Id + "---" + item.Name))
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
