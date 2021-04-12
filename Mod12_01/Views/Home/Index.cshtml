@@ -13,7 +13,12 @@
 <body>
     <div>
         <ul id="list"></ul>
-        <input type="button" id="btnList" value="List" />
+        <form>
+            id: <input type="text" id="id" name="Id" /><br />
+            Name: <input type="text" id="name" name="Name" /><br />
+            <input type="button" id="btnList" value="List" />
+            <input type="button" id="btnGet" value="Get" />
+        </form>
     </div>
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 
@@ -28,6 +33,16 @@
                         data.forEach(function (item) {
                             $("#list").append($("<li>").text(item.Id + "---" + item.Name))
                         });
+                    }
+                });
+            });
+            $("#btnGet").click(function () {
+                @*alert("@Url.Content("~/api/course/")" + $("#id").val());*@
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Content("~/api/course/")" + $("#id").val(),
+                    success: function (data) {
+                        $("#name").val(data.Name);
                     }
                 });
             });
