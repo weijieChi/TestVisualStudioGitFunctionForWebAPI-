@@ -19,6 +19,7 @@
             <input type="button" id="btnList" value="List" />
             <input type="button" id="btnGet" value="Get" />
             <input type="button" id="btnInsert" value="Insert" />
+            <input type="button" id="btnUpdate" value="Update" />
         </form>
     </div>
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
@@ -52,6 +53,16 @@
             $("#btnInsert").click(function () {
                 $.ajax({
                     type: "POST",
+                    url: "@Url.Content("~/api/course/")",
+                    data: $("#form1").serialize()
+                });
+            });
+
+            //http405 Method Not Allowed 不清楚要改哪邊的設定
+            $("#btnUpdate").click(function () {
+                //alert($("#form1").serialize());
+                $.ajax({
+                    type: "PUT",
                     url: "@Url.Content("~/api/course/")",
                     data: $("#form1").serialize()
                 });
