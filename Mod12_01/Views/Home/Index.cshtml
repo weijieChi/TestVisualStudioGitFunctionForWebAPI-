@@ -20,6 +20,7 @@
             <input type="button" id="btnGet" value="Get" />
             <input type="button" id="btnInsert" value="Insert" />
             <input type="button" id="btnUpdate" value="Update" />
+            <input type="button" id="btnDelete" value="Delete" />
         </form>
     </div>
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
@@ -65,6 +66,13 @@
                     type: "PUT",
                     url: "@Url.Content("~/api/course/")",
                     data: $("#form1").serialize()
+                });
+            });
+
+            $("#btnDelete").click(function () {
+                $.ajax({
+                    type: "DELETE",
+                    url: "@Url.Content("~/api/course/")" + $("#id").val()
                 });
             });
 
